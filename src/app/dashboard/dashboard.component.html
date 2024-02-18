@@ -1,0 +1,32 @@
+<!-- dashboard.component.html -->
+
+<div class="dashboard-container">
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="logo">
+        <img src="assets/logo.png" alt="Logo">
+      </div>
+      <ul class="nav-links">
+        <li><a routerLink="/dashboard/home" routerLinkActive="active">Home</a></li>
+        <li><a routerLink="/dashboard/profile" routerLinkActive="active">Profile</a></li>
+        <li><a routerLink="/dashboard/settings" routerLinkActive="active">Settings</a></li>
+        <!-- Add more navigation links as needed -->
+      </ul>
+    </nav>
+  
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <ul class="menu">
+        <li><a routerLink="/dashboard/home" routerLinkActive="active"><i class="fas fa-home"></i> Home</a></li>
+        <li><a routerLink="/dashboard/profile" routerLinkActive="active"><i class="fas fa-user"></i> Profile</a></li>
+        <li><a routerLink="/dashboard/settings" routerLinkActive="active"><i class="fas fa-cog"></i> Settings</a></li>
+        <!-- Add more menu items as needed -->
+      </ul>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="main-content">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+  

@@ -1,0 +1,41 @@
+<!-- registration.component.html -->
+
+<div class="registration-container">
+    <h2>Registration</h2>
+    <form (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="idType">ID Type</label>
+        <select id="idType" name="idType" [(ngModel)]="idType" required>
+          <option value="NIC">NIC</option>
+          <option value="Passport">Passport</option>
+          <option value="Driving License">Driving License</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="idNo">ID Number</label>
+        <input type="text" id="idNo" name="idNo" [(ngModel)]="idNo" required>
+      </div>
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" [(ngModel)]="name" required>
+      </div>
+      <div class="form-group">
+        <label for="mobile">Mobile</label>
+        <input type="text" id="mobile" name="mobile" [(ngModel)]="mobile" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" [(ngModel)]="email" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" [(ngModel)]="password" required>
+      </div>
+      <div class="form-group">
+        <label for="confirmPassword">Confirm Password</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" [(ngModel)]="confirmPassword" required>
+      </div>
+      <button type="submit">Register</button>
+    </form>
+  </div>
+  
