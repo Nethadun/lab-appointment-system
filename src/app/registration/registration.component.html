@@ -1,41 +1,53 @@
-<!-- registration.component.html -->
-
 <div class="registration-container">
-    <h2>Registration</h2>
-    <form (ngSubmit)="onSubmit()">
-      <div class="form-group">
-        <label for="idType">ID Type</label>
-        <select id="idType" name="idType" [(ngModel)]="idType" required>
-          <option value="NIC">NIC</option>
-          <option value="Passport">Passport</option>
-          <option value="Driving License">Driving License</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="idNo">ID Number</label>
-        <input type="text" id="idNo" name="idNo" [(ngModel)]="idNo" required>
-      </div>
-      <div class="form-group">
-        <label for="name">Name</label>
-        <input type="text" id="name" name="name" [(ngModel)]="name" required>
-      </div>
-      <div class="form-group">
-        <label for="mobile">Mobile</label>
-        <input type="text" id="mobile" name="mobile" [(ngModel)]="mobile" required>
-      </div>
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" [(ngModel)]="email" required>
-      </div>
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password" [(ngModel)]="password" required>
-      </div>
-      <div class="form-group">
-        <label for="confirmPassword">Confirm Password</label>
-        <input type="password" id="confirmPassword" name="confirmPassword" [(ngModel)]="confirmPassword" required>
-      </div>
-      <button type="submit">Register</button>
-    </form>
-  </div>
-  
+  <h2>Registration</h2>
+  <form (ngSubmit)="register()" [formGroup]="registerForm" novalidate>
+    <div class="form-group">
+      <label for="idType">ID Type</label>
+      <select id="idType" formControlName="idType">
+        <option value="">Select ID Type</option>
+        <option value="NIC">NIC</option>
+        <option value="Passport">Passport</option>
+        <option value="Driving License">Driving License</option>
+      </select>
+      <div *ngIf="registerForm.get('idType')?.invalid && (registerForm.get('idType')?.dirty || registerForm.get('idType')?.touched)"
+        class="error-message">ID Type is required</div>
+    </div>
+    <div class="form-group">
+      <label for="idNo">ID Number</label>
+      <input type="text" id="idNo" formControlName="idNo">
+      <div *ngIf="registerForm.get('idNo')?.invalid && (registerForm.get('idNo')?.dirty || registerForm.get('idNo')?.touched)"
+        class="error-message">ID Number is required</div>
+    </div>
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" id="name" formControlName="name">
+      <div *ngIf="registerForm.get('name')?.invalid && (registerForm.get('name')?.dirty || registerForm.get('name')?.touched)"
+        class="error-message">Name is required</div>
+    </div>
+    <div class="form-group">
+      <label for="mobile">Mobile</label>
+      <input type="text" id="mobile" formControlName="mobile">
+      <div *ngIf="registerForm.get('mobile')?.invalid && (registerForm.get('mobile')?.dirty || registerForm.get('mobile')?.touched)"
+        class="error-message">Mobile number is required and must be exactly ten digits</div>
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" formControlName="email">
+      <div *ngIf="registerForm.get('email')?.invalid && (registerForm.get('email')?.dirty || registerForm.get('email')?.touched)"
+        class="error-message">Invalid email</div>
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" id="password" formControlName="password">
+      <div *ngIf="registerForm.get('password')?.invalid && (registerForm.get('password')?.dirty || registerForm.get('password')?.touched)"
+        class="error-message">Password is required</div>
+    </div>
+    <div class="form-group">
+      <label for="confirmPassword">Confirm Password</label>
+      <input type="password" id="confirmPassword" formControlName="confirmPassword">
+      <div *ngIf="registerForm.get('confirmPassword')?.invalid && (registerForm.get('confirmPassword')?.dirty || registerForm.get('confirmPassword')?.touched)"
+        class="error-message">Confirm Password is required</div>
+    </div>
+    <button type="submit" [disabled]="registerForm.invalid">Register</button>
+  </form>
+</div>

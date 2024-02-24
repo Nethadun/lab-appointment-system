@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../service/auth.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -13,15 +15,27 @@ export class LoginComponent implements OnInit {
 
   username: string = '';
   password: string = '';
+  errorMessage: string = '';
 
-  constructor(private router: Router) {}
+  constructor(private router: Router,private authService: AuthService) {}
   ngOnInit(): void {
   }
-  onSubmit() {
-    // Here you would typically perform authentication logic,
-    // for the sake of simplicity, let's assume authentication is successful
-    // and redirect to another page (e.g., home page)
-    this.router.navigate(['/dashboard']);
+
+  login(form: NgForm) {
+    if (form.valid) {
+      this.authService.login(this.username, this.password).subscribe(
+        (response) => {
+          // Handle successful login
+          console.log('Login successful:', response);
+          this.router.navigate(['/dashboard']);
+        },
+        (error) => {
+          // Handle login error
+          this.errorMessage = 'Invalid username or password';
+          console.error('Login error:', error);
+        }
+      );
+    }
   }
 
 }

@@ -1,1 +1,10 @@
-<p>email-verification works!</p>
+<div class="otp-verification-container">
+    <h2>OTP Verification</h2>
+    <p>Please enter the OTP sent to your email:</p>
+    <div class="form-group">
+      <label for="otp">OTP:</label>
+      <input type="text" id="otp" name="otp" [(ngModel)]="otp" required>
+    </div>
+    <button (click)="verifyOTP()">Verify OTP</button>
+  </div>
+  
