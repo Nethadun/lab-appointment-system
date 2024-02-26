@@ -1,11 +1,19 @@
-<header>
-  <!-- Header content goes here -->
-</header>
+<ng-container *ngIf="isAuthenticated(); else login">
+  <!-- <app-header></app-header> -->
+  <app-sidebar></app-sidebar> 
+  <router-outlet></router-outlet>
+</ng-container>
 
-<main>
-  <router-outlet></router-outlet> <!-- This is where the content of your current route will be rendered -->
-</main>
-
-<footer>
-  <!-- Footer content goes here -->
-</footer>
+<ng-template #login>
+  <ng-container *ngIf="!showRegistration && !showOTP; else registrationOTP">
+    <app-login></app-login>
+  </ng-container>
+  <ng-template #registrationOTP>
+    <ng-container *ngIf="showRegistration">
+      <app-registration></app-registration>
+    </ng-container>
+    <ng-container *ngIf="showOTP">
+      <app-email-verification></app-email-verification>
+    </ng-container>
+  </ng-template>
+</ng-template>

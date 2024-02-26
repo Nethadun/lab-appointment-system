@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { AuthService } from '../service/auth.service';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-registration',
@@ -11,10 +12,10 @@ import { Router } from '@angular/router';
 export class RegistrationComponent implements OnInit {
 
   registerForm: FormGroup;
-
+  registrationSuccess: boolean = false;
   confirmPassword: string = '';
   errorMessage: string = '';
-  constructor(private router: Router,private authService:AuthService) { 
+  constructor(private appComponent: AppComponent,private router: Router,private authService:AuthService) { 
     this.registerForm = new FormGroup({
       idType: new FormControl('', [Validators.required]),
       idNo: new FormControl('', [Validators.required]),
@@ -27,12 +28,12 @@ export class RegistrationComponent implements OnInit {
     
   
   }
-  mobileValidator(control: FormControl){
+   mobileValidator(control: AbstractControl): { invalidMobile: boolean } | null {
     const mobileNumber = control.value;
-    if (mobileNumber && mobileNumber.length !== 10) {
+    if (mobileNumber && mobileNumber.toString().length !== 10) {
       return { 'invalidMobile': true };
     }
-    return null
+    return null;
   }
 
   ngOnInit(): void {
@@ -51,10 +52,11 @@ export class RegistrationComponent implements OnInit {
     console.log(registerData)
     this.authService.register(registerData)
       .subscribe(
-        () => {
+        (res) => {
+          console.log(res)
+          localStorage.setItem('userId',res.userId)
           console.log('Registration successful');
-          this.router.navigate(['/verify-email']);
-          // Redirect or do something after successful registration
+          this.appComponent.toggleOTP();
         },
         error => {
           console.error('Registration failed', error);

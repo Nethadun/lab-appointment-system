@@ -17,8 +17,6 @@ export class AuthService {
       username:username,
       password:password
     }
-    console.log('data', data)
-    // Mocking a POST request to the login endpoint
     return this.http.post<any>(`${this.apiUrl}/api/auth`,  data );
   }
 
@@ -26,7 +24,7 @@ export class AuthService {
     return this.http.post<any>(`${this.apiUrl}/api/register`, userData);
   }
 
-  verifyOTP(otp: string): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/api/register/verify`, otp );
+  verifyOTP(otpData: any): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}/api/register/verify`, otpData );
   }
 }

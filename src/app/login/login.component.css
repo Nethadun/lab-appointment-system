@@ -1,13 +1,18 @@
 /* login.component.css */
 
 .login-container {
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-    border-radius: 10px;
-    background-color: #f8f9fa;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px; /* Adjusted width to 700px */
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #f8f9fa;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
   
   h2 {
     text-align: center;
@@ -41,7 +46,7 @@
     appearance: none;
   }
   
-  button {
+  .button {
     display: block;
     width: 100%;
     padding: 10px;
@@ -54,7 +59,7 @@
     transition: background-color 0.3s ease;
   }
   
-  button:hover {
+  .button:hover {
     background-color: #0056b3;
   }
   

@@ -11,6 +11,7 @@
         <label for="password">Password</label>
         <input type="password" id="password" name="password" [(ngModel)]="password" required>
       </div>
+      <p>Do you not have an account? <a routerLink="/register"(click)="toggleRegistration()">Register here</a>.</p>
       <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
       <button type="submit">Login</button>
     </form>

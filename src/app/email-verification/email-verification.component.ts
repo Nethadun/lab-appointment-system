@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../service/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-email-verification',
@@ -10,20 +11,22 @@ export class EmailVerificationComponent implements OnInit {
 
   otp: string = '';
 
-  constructor(private authService: AuthService) { }
+  constructor(private router: Router,private authService: AuthService) { }
 
   ngOnInit(): void {
   }
   verifyOTP() {
-    // Call a method in the auth service to verify the OTP
-    this.authService.verifyOTP(this.otp).subscribe(
+    const data = {
+      userId:localStorage.getItem('userId'),
+      otp:this.otp
+    }
+    this.authService.verifyOTP(data).subscribe(
       () => {
         console.log('OTP verified successfully.');
-        // You can add further logic here, such as redirecting the user to a success page
+        this.router.navigate(['/login']);
       },
       (error) => {
         console.error('Error verifying OTP:', error);
-        // You can handle errors here, such as displaying an error message to the user
       }
     );
   }

@@ -8,9 +8,10 @@ import { RegistrationComponent } from './registration/registration.component';
 import { EmailVerificationComponent } from './email-verification/email-verification.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NavComponent } from './nav/nav.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from './service/auth.service';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { ViewAllAppointmentComponent } from './dashboard/view-all-appointment/view-all-appointment.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { AuthService } from './service/auth.service';
     RegistrationComponent,
     EmailVerificationComponent,
     DashboardComponent,
-    NavComponent
+    SidebarComponent,
+    ViewAllAppointmentComponent
   ],
   imports: [
     BrowserModule,
