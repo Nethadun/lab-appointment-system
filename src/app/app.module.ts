@@ -12,7 +12,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from './service/auth.service';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ViewAllAppointmentComponent } from './dashboard/view-all-appointment/view-all-appointment.component';
-
+import { MatTableModule } from '@angular/material/table';
+import { CreateAppointmentComponent } from './dashboard/create-appointment/create-appointment.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatIconModule } from '@angular/material/icon';
+import { ViewAppointmentComponent } from './view-appointment/view-appointment.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,14 +28,25 @@ import { ViewAllAppointmentComponent } from './dashboard/view-all-appointment/vi
     EmailVerificationComponent,
     DashboardComponent,
     SidebarComponent,
-    ViewAllAppointmentComponent
+    ViewAllAppointmentComponent,
+    CreateAppointmentComponent,
+    ViewAppointmentComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatTableModule,
+    BrowserAnimationsModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatPaginatorModule,
+    MatIconModule
+  ],
+  entryComponents: [
+    CreateAppointmentComponent
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

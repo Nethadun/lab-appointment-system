@@ -1,1 +1,45 @@
-<p>view-all-appointment works!</p>
+
+<div class="row">
+  <div class="col-9"></div>
+  <div class="col-3">
+    <span>dashborad/appionment</span>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <button  (click)="openDialog()" >create</button>
+  </div>
+</div>
+
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource">
+
+    <!-- Define columns -->
+    <ng-container *ngFor="let col of displayedColumns; let i = index" [matColumnDef]="col">
+      <th mat-header-cell *matHeaderCellDef> {{col | titlecase}} </th>
+      <td mat-cell *matCellDef="let element"> 
+        <!-- If it's not the last column, display the data normally -->
+        <ng-container *ngIf="i !== displayedColumns.length - 1; else viewButton">
+          {{element[col]}} 
+        </ng-container>
+        <!-- If it's the last column, display the "View" button -->
+        <ng-template #viewButton>
+          <button mat-icon-button color="primary" (click)="viewAppointment(element)">
+            <mat-icon>visibility</mat-icon>
+          </button>
+        </ng-template>
+      </td>
+    </ng-container>
+
+    <!-- Set table rows -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <!-- Paginator -->
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="10" showFirstLastButtons></mat-paginator>
+</div>
+
+  
+  

@@ -1,0 +1,32 @@
+<h1 mat-dialog-title>Create Appointment</h1>
+<div mat-dialog-content>
+    <div class="row">
+        <div class="col-6">
+          <div class="form-group">
+            <label for="appointmentDate">Appointment Date:</label>
+            <input type="date" id="appointmentDate" name="appointmentDate" [(ngModel)]="appointmentDate" required 
+                   [min]="minDate">
+          </div>
+        </div>
+        <div class="col-6">
+            <div class="form-group">
+                <label for="recommendedDoctor">Recommended Doctor:</label>
+                <input type="text" id="recommendedDoctor" name="recommendedDoctor" [(ngModel)]="recommendedDoctor" required>
+              </div>
+        </div>
+        
+    </div>
+    <div class="row">
+      <div class="form-group">
+        <label for="selectedTests">Test</label>
+        <select id="selectedTests" name="selectedTests" multiple [(ngModel)]="selectedTests" (ngModelChange)="onChangeSelectedTests()">
+          <option *ngFor="let test of testList" [value]="test.id">{{ test.testName }}</option>
+        </select>
+      </div>
+    </div>
+      
+</div>
+<div mat-dialog-actions>
+  <button class="button-save" mat-button (click)="onSave()">Save</button>   
+  <button class="button-close" mat-button (click)="onCancel()">Cancel</button>
+</div>

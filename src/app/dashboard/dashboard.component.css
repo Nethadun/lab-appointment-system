@@ -109,4 +109,13 @@
       z-index: 1;
     }
   }
+
+  .main-con{
+    height: 100%;
+    width: 90%;
+    position: fixed;
+    top: 0;
+    left: 200px;
+    right: 0;
+  }
   

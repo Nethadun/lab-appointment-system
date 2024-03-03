@@ -9,6 +9,11 @@ export class AppComponent {
   title = 'lab-appointment-system';
   showRegistration: boolean = false; 
   showOTP: boolean = false;
+ 
+
+  ngAfterViewInit(){
+    // this.isAuthenticated();
+  }
   isAuthenticated(): boolean {
     if(localStorage.getItem('token')!=undefined){
       return true;

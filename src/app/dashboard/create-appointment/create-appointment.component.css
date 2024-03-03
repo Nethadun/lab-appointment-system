@@ -1,0 +1,71 @@
+/* otp-verification.component.css */
+
+.otp-verification-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 100px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  .otp-verification-container h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+  }
+  
+  input[type="text"],
+  input[type="password"],
+  input[type="date"],
+  input[type="email"],
+  select {
+    width: calc(100% - 20px);
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #495057;
+  }
+  
+  select {
+    appearance: none;
+  }
+  .button-save {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .button-save:hover {
+    background-color: #0056b3;
+  }
+
+  .button-close {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #7c223d;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .button-close:hover {
+    background-color: #52151f;
+  }
+  

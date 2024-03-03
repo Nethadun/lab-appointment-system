@@ -1,0 +1,13 @@
+
+  .container {
+  display: flex;
+  height: 100vh; /* Set container height to viewport height */
+}
+
+.sidebar {
+  width: 200px; /* Set sidebar width */
+}
+
+.main-content {
+      flex: 1; /* Let the main content take the remaining space */
+}
