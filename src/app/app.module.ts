@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -19,7 +18,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatIconModule } from '@angular/material/icon';
-import { ViewAppointmentComponent } from './view-appointment/view-appointment.component';
+import { ViewAppointmentComponent } from './dashboard/view-all-appointment/view-appointment/view-appointment.component';
+import { MekePaymentComponent } from './dashboard/create-appointment/meke-payment/meke-payment.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +32,8 @@ import { ViewAppointmentComponent } from './view-appointment/view-appointment.co
     SidebarComponent,
     ViewAllAppointmentComponent,
     CreateAppointmentComponent,
-    ViewAppointmentComponent
+    ViewAppointmentComponent,
+    MekePaymentComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +46,9 @@ import { ViewAppointmentComponent } from './view-appointment/view-appointment.co
     MatDialogModule,
     MatFormFieldModule,
     MatPaginatorModule,
-    MatIconModule
+    MatIconModule,
+    MatDatepickerModule,
+    MatInputModule,
   ],
   entryComponents: [
     CreateAppointmentComponent

@@ -4,6 +4,7 @@ import { CreateAppointmentComponent } from '../create-appointment/create-appoint
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { AppointmentService } from 'src/app/service/appointment.service';
+import { ViewAppointmentComponent } from './view-appointment/view-appointment.component';
 export interface PeriodicElement {
   name: string;
   position: number;
@@ -65,9 +66,14 @@ export class ViewAllAppointmentComponent implements OnInit {
     
   }
   viewAppointment(element: any) {
-    // Replace this with the logic to view the appointment details
-    console.log('View appointment:', element);
-    // You can perform actions like opening a dialog, navigating to a different page, etc.
+    const dialogRef = this.dialog.open(ViewAppointmentComponent, {
+      width: '750px',
+      data:element
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.getAllAppointment();
+    });
   }
 
 }

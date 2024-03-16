@@ -1,0 +1,31 @@
+<h1 mat-dialog-title>Enter Debit Card Details</h1>
+<div mat-dialog-content>
+    <div class="debit-card-container">
+        <h2>Amount to Pay: LKR{{ amountToPay }}</h2>
+        <form [formGroup]="paymentForm" (ngSubmit)="processPayment()">
+            <div class="form-group">
+              <label for="cardNumber">Card Number:</label>
+              <input type="text" id="cardNumber" formControlName="cardNumber">
+              <div *ngIf="paymentForm.get('cardNumber')?.invalid && (paymentForm.get('cardNumber')?.dirty || paymentForm.get('cardNumber')?.touched)"
+                class="error-message">Card number is required</div>
+            </div>
+            <div class="form-group">
+              <label for="expiryDate">Expiration Date:</label>
+              <input type="text" id="expiryDate" formControlName="expiryDate">
+              <div *ngIf="paymentForm.get('expiryDate')?.invalid && (paymentForm.get('expiryDate')?.dirty || paymentForm.get('expiryDate')?.touched)"
+                class="error-message">Expiration date is required</div>
+            </div>
+            <div class="form-group">
+              <label for="cvv">CVV:</label>
+              <input type="text" id="cvv" formControlName="cvv">
+              <div *ngIf="paymentForm.get('cvv')?.invalid && (paymentForm.get('cvv')?.dirty || paymentForm.get('cvv')?.touched)"
+                class="error-message">CVV is required</div>
+            </div>
+            <!-- Add more form fields as needed -->
+            <button type="submit" [disabled]="paymentForm.invalid">Make Payment</button>
+          </form>
+      </div>
+      
+
+</div>
+  

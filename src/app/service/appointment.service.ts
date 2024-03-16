@@ -15,6 +15,10 @@ export class AppointmentService {
     return this.http.get<any[]>(`${this.apiUrl}/api/tests/`, { headers })
   }
 
+  findTestById(token: any, id:any): Observable<any> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<any[]>(`${this.apiUrl}/api/appointments/tests/${id}`, { headers })
+  }
   createAppointment(token: any, params:any): Observable<any> {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.post<any[]>(`${this.apiUrl}/api/appointments/`, params, {

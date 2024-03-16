@@ -1,6 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { AppointmentService } from 'src/app/service/appointment.service';
+import { MekePaymentComponent } from './meke-payment/meke-payment.component';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-create-appointment',
@@ -15,10 +18,12 @@ export class CreateAppointmentComponent implements OnInit {
   testList:any[]=[];
   selectedTests: number[] = [];
   minDate: any;
+  userRole:any;
   constructor(
     public dialogRef: MatDialogRef<CreateAppointmentComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private appointmentService : AppointmentService
+    private appointmentService : AppointmentService,
+    private dialog: MatDialog
   ) {}
   ngOnInit(): void {
     const today = new Date();
@@ -27,6 +32,7 @@ export class CreateAppointmentComponent implements OnInit {
     tomorrow.setDate(tomorrow.getDate() + 1);
     this.minDate = tomorrow.toISOString().split('T')[0];
     this.token= localStorage.getItem('token');
+    this.userRole =localStorage.getItem('userType')
     this. findllTests();
   }
 
@@ -40,15 +46,37 @@ export class CreateAppointmentComponent implements OnInit {
       recommendedDoctor: this.recommendedDoctor,
       tests: this.selectedTests
     };
-
-    console.log('data :',appointmentData)
     this.appointmentService.createAppointment(this.token,appointmentData).subscribe(res=>{
-      console.log(JSON.stringify(res));
-      if(res.status ==200){
+      if(res.totalPay>0 && this.userRole === 'PATIENT'){
         this.dialogRef.close(appointmentData);
+        this.openDialog(res.totalPay);
+      }else{
+        Swal.fire({
+          text: "Appointment date already taken!",
+          icon: "info"
+        });
       }
-    })
+    },(error) => {
+      // Handle the error here
+      console.error('An error occurred:', error);
+      Swal.fire({
+        text: "Appointment date already taken!",
+        icon: "info"
+      });
+    }
+  );
+  
     
+  }
+
+  openDialog(res:any): void {
+    const dialogRef = this.dialog.open(MekePaymentComponent, {
+      width: '750px',
+      data:res
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
 
   onCancel(): void {

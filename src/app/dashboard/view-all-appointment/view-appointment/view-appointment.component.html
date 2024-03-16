@@ -1,1 +1,34 @@
-<p>view-appointment works!</p>
+<h1 mat-dialog-title>View Test</h1>
+<div mat-dialog-content>
+    <table mat-table [dataSource]="testData">
+        <ng-container matColumnDef="testId">
+          <th mat-header-cell *matHeaderCellDef> Test ID </th>
+          <td mat-cell *matCellDef="let item"> {{ item.testId }} </td>
+        </ng-container>
+        <ng-container matColumnDef="testName">
+          <th mat-header-cell *matHeaderCellDef> Test Name </th>
+          <td mat-cell *matCellDef="let item"> {{ item.testName }} </td>
+        </ng-container>
+        <ng-container matColumnDef="testShortName">
+          <th mat-header-cell *matHeaderCellDef> Test Short Name </th>
+          <td mat-cell *matCellDef="let item"> {{ item.testShortName }} </td>
+        </ng-container>
+        <ng-container matColumnDef="report">
+          <th mat-header-cell *matHeaderCellDef> Report </th>
+          <td mat-cell *matCellDef="let item">
+            <!-- If report is null, show file upload input -->
+            <ng-container *ngIf="!item.report">
+              <input type="file" (change)="onFileSelected($event, item)">
+            </ng-container>
+            <!-- If report is not null, show download button -->
+            <ng-container *ngIf="item.report">
+              <button mat-raised-button color="primary" (click)="downloadReport(item)">Download</button>
+            </ng-container>
+          </td>
+        </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      
+</div>
