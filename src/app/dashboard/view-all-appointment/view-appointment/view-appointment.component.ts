@@ -29,6 +29,7 @@ export class ViewAppointmentComponent implements OnInit {
   onFileSelected(event: any, item: any) {
     const file: File = event.target.files[0];
 
+    console.log(item.testId)
     if (file) {
       const reader = new FileReader();
 
@@ -36,14 +37,19 @@ export class ViewAppointmentComponent implements OnInit {
         const binaryString: string = reader.result as string;
         const base64Encoded: string = btoa(binaryString);
         console.log(base64Encoded);
+
+        this.appointmentService.uploadTest(this.token,item.testId,base64Encoded).subscribe(res=>{
+          console.log(res)
+        })
       };
       reader.readAsBinaryString(file);
     }
   }
 
   downloadReport(item:any){
+    console.log(item)
 
-    let base64Encoded = ''
+    let base64Encoded = item.report
     let fileName= ''
     const binaryString: string = atob(base64Encoded);
 

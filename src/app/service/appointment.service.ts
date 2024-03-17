@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AppointmentService {
+  
   private apiUrl = 'http://localhost:8082';
   constructor(private http: HttpClient) { }
 
@@ -13,6 +14,17 @@ export class AppointmentService {
   findAllTests(token: any): Observable<any> {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.get<any[]>(`${this.apiUrl}/api/tests/`, { headers })
+  }
+
+  uploadTest(token: any, testId: any, base64Encoded: any) {
+    console.log('base :', base64Encoded)
+    const request ={
+      report: base64Encoded
+    }
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.post<any[]>(`${this.apiUrl}/api/appointments/report/${testId}`, request, {
+      headers
+    });
   }
 
   findTestById(token: any, id:any): Observable<any> {
