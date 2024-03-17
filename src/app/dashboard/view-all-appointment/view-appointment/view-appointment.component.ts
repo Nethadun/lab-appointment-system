@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AppointmentService } from 'src/app/service/appointment.service';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-view-appointment',
   templateUrl: './view-appointment.component.html',
@@ -40,6 +41,13 @@ export class ViewAppointmentComponent implements OnInit {
 
         this.appointmentService.uploadTest(this.token,item.testId,base64Encoded).subscribe(res=>{
           console.log(res)
+          Swal.fire({
+            title: "Good job!",
+            text: "Report upload successfully",
+            icon: "success"
+          });
+          
+          this.findTestById();
         })
       };
       reader.readAsBinaryString(file);

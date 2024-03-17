@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-meke-payment',
@@ -27,7 +28,10 @@ export class MekePaymentComponent implements OnInit {
     if (this.paymentForm.valid) {
       console.log('Payment processed!');
     } else {
-      console.log('Form is invalid.');
+      Swal.fire({
+        icon: "error",
+        text: "Invaild inputs1",
+      })
       // Optionally, you can mark all fields as touched to display error messages immediately
       this.paymentForm.markAllAsTouched();
     }
