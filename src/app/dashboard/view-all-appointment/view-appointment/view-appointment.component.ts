@@ -9,6 +9,7 @@ import Swal from 'sweetalert2';
 })
 export class ViewAppointmentComponent implements OnInit {
   token:any
+  userType:any;
   testData: any[] = [];
   displayedColumns: string[] = ['testId', 'testName', 'testShortName', 'report']; // Define the columns to be displayed
 
@@ -17,6 +18,7 @@ export class ViewAppointmentComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.data)
     this.token= localStorage.getItem('token');
+    this.userType= localStorage.getItem('userType');
     this.findTestById();
   }
 
