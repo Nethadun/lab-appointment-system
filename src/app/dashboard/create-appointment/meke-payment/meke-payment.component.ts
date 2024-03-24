@@ -26,7 +26,11 @@ export class MekePaymentComponent implements OnInit {
 
   processPayment() {
     if (this.paymentForm.valid) {
-      console.log('Payment processed!');
+     Swal.fire({
+      title: "Good job!",
+      text: "Your payment successfully done!",
+      icon: "success"
+      });
     } else {
       Swal.fire({
         icon: "error",

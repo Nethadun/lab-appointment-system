@@ -34,10 +34,12 @@ export class ViewAllAppointmentComponent implements OnInit {
   displayedColumns: string[] = ['id', 'appointmentNumber', 'appointmentDate', 'recommendedDoctor', 'amount', 'serviceCharge', 'totalPay', 'status', 'createDate'];
   @ViewChild(MatPaginator) paginator: MatPaginator | undefined;
   token:any
+  userType:any
   constructor(private dialog: MatDialog,private appointmentService:AppointmentService) { }
 
   ngOnInit(): void {
     this.token= localStorage.getItem('token');
+    this.userType= localStorage.getItem('userType');
     this.getAllAppointment();
     }
 
